@@ -71,9 +71,9 @@ async def transcribe(audio):
 async def get_completion(user_prompt, conversation_thus_far):
     start_time = time.time()
     messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "system", "content": "Eres un ayudante muy útil."},
         {"role": "user",
-         "content": "You are a helpful assistant with a voice interface. Keep your responses limited to a single sentence of reasonable length. Make sure your response is in English, regardless of the language that the user's input is in."},
+         "content": "Eres un ayudante con una interfaz de voz. Limita tus respuestas a una sola frase de longitud razonable. Asegúrate de que tu respuesta esté en español, independientemente del idioma en el que esté la entrada del usuario."},
     ]
 
     messages.extend(json.loads(base64.b64decode(conversation_thus_far)))
@@ -93,7 +93,7 @@ async def get_completion(user_prompt, conversation_thus_far):
 def to_audio(text):
     start_time = time.time()
 
-    tts = gTTS(text)
+    tts = gTTS(text, lang="es", slow=False)
     filepath = f"/tmp/{uuid.uuid4()}.mp3"
     tts.save(filepath)
 
